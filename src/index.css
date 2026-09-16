@@ -3,24 +3,50 @@
 @layer base {
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    background-color: #0f172a;
-    color: #f8fafc;
+    background-color: #f4f5f7;
+    color: #111827;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
 }
 
-/* Custom crisp scrollbars */
+/* Custom striped pattern matching the bar chart in the image */
+.bg-striped {
+  background: repeating-linear-gradient(
+    -45deg,
+    #cbd5e1,
+    #cbd5e1 3px,
+    #f1f5f9 3px,
+    #f1f5f9 7px
+  );
+}
+
+/* Custom subtle scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #1e293b;
+  background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #475569;
-  border-radius: 3px;
+  background: #cbd5e1;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+  background: #94a3b8;
+}
+
+/* Hide scrollbar for clean horizontal scrolls */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Safe area for mobile navigation */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 12px);
 }

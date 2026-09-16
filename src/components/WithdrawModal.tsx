@@ -64,26 +64,26 @@ export const WithdrawModal: React.FC<WithdrawModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm p-4 overflow-y-auto">
-      <div className="w-full max-w-md bg-slate-900 border border-slate-700 rounded-2xl p-6 shadow-2xl space-y-4 my-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm p-4 overflow-y-auto">
+      <div className="w-full max-w-md bg-white border border-slate-200/80 rounded-[22px] p-6 shadow-2xl space-y-4 my-8">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div className="flex items-center justify-between border-b border-slate-100 pb-3">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/30">
+            <div className="w-10 h-10 rounded-xl bg-emerald-50 text-[#155e37] flex items-center justify-center border border-emerald-200">
               <Building className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-white">
+              <h3 className="text-base font-extrabold text-slate-900">
                 {isHinglish ? 'Bank me Payout Nikalein (Withdrawal)' : 'Withdraw to Bank Account'}
               </h3>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-500">
                 {isHinglish ? 'E-Wallet se bank khate me transfer' : 'Instant IMPS / NEFT Settlement'}
               </p>
             </div>
           </div>
           <button
             onClick={handleClose}
-            className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
+            className="p-1.5 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition"
           >
             <X className="w-5 h-5" />
           </button>
@@ -91,23 +91,23 @@ export const WithdrawModal: React.FC<WithdrawModalProps> = ({
 
         {isSuccess ? (
           <div className="py-6 text-center space-y-3">
-            <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 mx-auto flex items-center justify-center">
+            <div className="w-14 h-14 rounded-full bg-emerald-50 text-[#155e37] border border-emerald-200 mx-auto flex items-center justify-center">
               <CheckCircle2 className="w-8 h-8" />
             </div>
-            <h4 className="text-lg font-bold text-white">
+            <h4 className="text-lg font-extrabold text-slate-900">
               {isHinglish ? 'Withdrawal Safalta Se Ho Gaya!' : 'Withdrawal Request Processed!'}
             </h4>
-            <p className="text-xs text-slate-300">
+            <p className="text-xs text-slate-600">
               {isHinglish
                 ? `Rashi ${formatCurrency(netAmount)} aapke khate me bhej di gayi hai.`
                 : `Net amount of ${formatCurrency(netAmount)} has been credited.`}
             </p>
-            <div className="p-3 bg-slate-950 rounded-xl text-xs font-mono text-slate-400">
-              REF NO: <span className="text-white font-bold">{txnRef}</span>
+            <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-mono text-slate-500">
+              REF NO: <span className="text-[#155e37] font-bold">{txnRef}</span>
             </div>
             <button
               onClick={handleClose}
-              className="w-full py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition mt-2"
+              className="w-full py-2.5 rounded-full bg-[#155e37] hover:bg-[#114b2c] text-white font-bold text-xs transition mt-2 shadow-sm"
             >
               {isHinglish ? 'Thik Hai' : 'Done'}
             </button>
@@ -115,9 +115,9 @@ export const WithdrawModal: React.FC<WithdrawModalProps> = ({
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4 text-xs">
             {/* Wallet balance display */}
-            <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 flex justify-between items-center">
-              <span className="text-slate-400">{isHinglish ? 'Maujooda Wallet Rashi:' : 'Available Balance:'}</span>
-              <span className="font-mono text-base font-bold text-emerald-400">
+            <div className="p-3.5 bg-slate-50 rounded-2xl border border-slate-200/80 flex justify-between items-center">
+              <span className="text-slate-600 font-bold">{isHinglish ? 'Maujooda Wallet Rashi:' : 'Available Balance:'}</span>
+              <span className="font-mono text-base font-extrabold text-[#155e37]">
                 {formatCurrency(walletBalance)}
               </span>
             </div>
@@ -125,13 +125,13 @@ export const WithdrawModal: React.FC<WithdrawModalProps> = ({
             {/* Amount input */}
             <div>
               <div className="flex justify-between items-center mb-1">
-                <label className="text-slate-300 font-semibold">
+                <label className="text-slate-700 font-bold">
                   {isHinglish ? 'Nikaasi Rashi (Amount) *' : 'Withdrawal Amount *'}
                 </label>
                 <button
                   type="button"
                   onClick={() => setAmount(walletBalance)}
-                  className="text-[10px] text-indigo-400 hover:underline"
+                  className="text-[10px] text-[#155e37] font-bold hover:underline"
                 >
                   {isHinglish ? 'Poori Rashi (100%)' : 'Max All'}
                 </button>
@@ -143,7 +143,7 @@ export const WithdrawModal: React.FC<WithdrawModalProps> = ({
                 step="100"
                 value={amount}
                 onChange={(e) => setAmount(Number(e.target.value))}
-                className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 font-mono text-white focus:outline-none focus:border-emerald-500"
+                className="w-full px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 font-mono text-slate-900 focus:outline-none focus:border-[#155e37]"
               />
             </div>
 
@@ -152,10 +152,10 @@ export const WithdrawModal: React.FC<WithdrawModalProps> = ({
               <button
                 type="button"
                 onClick={() => setPayoutMode('BANK')}
-                className={`py-2 px-3 rounded-lg border flex items-center justify-center gap-1.5 font-semibold transition ${
+                className={`py-2 px-3 rounded-xl border flex items-center justify-center gap-1.5 font-bold text-xs transition ${
                   payoutMode === 'BANK'
-                    ? 'bg-indigo-600/30 border-indigo-500 text-indigo-300'
-                    : 'bg-slate-950 border-slate-800 text-slate-400'
+                    ? 'bg-emerald-50 border-[#155e37] text-[#155e37]'
+                    : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300'
                 }`}
               >
                 <Building className="w-3.5 h-3.5" />
@@ -164,10 +164,10 @@ export const WithdrawModal: React.FC<WithdrawModalProps> = ({
               <button
                 type="button"
                 onClick={() => setPayoutMode('UPI')}
-                className={`py-2 px-3 rounded-lg border flex items-center justify-center gap-1.5 font-semibold transition ${
+                className={`py-2 px-3 rounded-xl border flex items-center justify-center gap-1.5 font-bold text-xs transition ${
                   payoutMode === 'UPI'
-                    ? 'bg-indigo-600/30 border-indigo-500 text-indigo-300'
-                    : 'bg-slate-950 border-slate-800 text-slate-400'
+                    ? 'bg-emerald-50 border-[#155e37] text-[#155e37]'
+                    : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300'
                 }`}
               >
                 <QrCode className="w-3.5 h-3.5" />
@@ -177,63 +177,63 @@ export const WithdrawModal: React.FC<WithdrawModalProps> = ({
 
             {/* Account Details */}
             {payoutMode === 'BANK' ? (
-              <div className="space-y-2.5 p-3 bg-slate-950/80 rounded-xl border border-slate-800">
+              <div className="space-y-2.5 p-3.5 bg-slate-50 rounded-2xl border border-slate-200/80">
                 <div>
-                  <label className="block text-slate-400 text-[11px] mb-0.5">Bank Name</label>
+                  <label className="block text-slate-600 text-[11px] font-bold mb-0.5">Bank Name</label>
                   <input
                     type="text"
                     value={bankName}
                     onChange={(e) => setBankName(e.target.value)}
-                    className="w-full px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-white"
+                    className="w-full px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-900 focus:outline-none focus:border-[#155e37]"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-400 text-[11px] mb-0.5">Account Number</label>
+                  <label className="block text-slate-600 text-[11px] font-bold mb-0.5">Account Number</label>
                   <input
                     type="text"
                     value={accountNumber}
                     onChange={(e) => setAccountNumber(e.target.value)}
-                    className="w-full px-2.5 py-1 rounded bg-slate-900 border border-slate-800 font-mono text-white"
+                    className="w-full px-3 py-1.5 rounded-xl bg-white border border-slate-200 font-mono text-slate-900 focus:outline-none focus:border-[#155e37]"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-400 text-[11px] mb-0.5">IFSC Code</label>
+                  <label className="block text-slate-600 text-[11px] font-bold mb-0.5">IFSC Code</label>
                   <input
                     type="text"
                     value={ifscCode}
                     onChange={(e) => setIfscCode(e.target.value)}
-                    className="w-full px-2.5 py-1 rounded bg-slate-900 border border-slate-800 font-mono text-white uppercase"
+                    className="w-full px-3 py-1.5 rounded-xl bg-white border border-slate-200 font-mono text-slate-900 uppercase focus:outline-none focus:border-[#155e37]"
                   />
                 </div>
               </div>
             ) : (
-              <div className="p-3 bg-slate-950/80 rounded-xl border border-slate-800">
-                <label className="block text-slate-400 text-[11px] mb-1">UPI VPA / ID</label>
+              <div className="p-3.5 bg-slate-50 rounded-2xl border border-slate-200/80">
+                <label className="block text-slate-600 text-[11px] font-bold mb-1">UPI VPA / ID</label>
                 <input
                   type="text"
                   placeholder="e.g. mobile@upi"
                   value={upiId}
                   onChange={(e) => setUpiId(e.target.value)}
-                  className="w-full px-3 py-1.5 rounded bg-slate-900 border border-slate-800 font-mono text-white"
+                  className="w-full px-3.5 py-2 rounded-xl bg-white border border-slate-200 font-mono text-slate-900 focus:outline-none focus:border-[#155e37]"
                 />
               </div>
             )}
 
             {/* Deductions Breakdown */}
-            <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-1.5 text-[11px]">
-              <div className="flex justify-between text-slate-400">
+            <div className="p-3.5 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5 text-[11px]">
+              <div className="flex justify-between text-slate-600">
                 <span>{isHinglish ? 'Nikaasi Rashi (Gross):' : 'Gross Requested:'}</span>
-                <span className="font-mono text-white">{formatCurrency(validAmount)}</span>
+                <span className="font-mono font-bold text-slate-900">{formatCurrency(validAmount)}</span>
               </div>
-              <div className="flex justify-between text-rose-400">
+              <div className="flex justify-between text-rose-600">
                 <span>{isHinglish ? `TDS (${settings.tdsPercent}%):` : `TDS (${settings.tdsPercent}%):`}</span>
-                <span className="font-mono">-{formatCurrency(tdsAmount)}</span>
+                <span className="font-mono font-semibold">-{formatCurrency(tdsAmount)}</span>
               </div>
-              <div className="flex justify-between text-amber-400">
+              <div className="flex justify-between text-amber-600">
                 <span>{isHinglish ? `Admin (${settings.adminFeePercent}%):` : `Admin (${settings.adminFeePercent}%):`}</span>
-                <span className="font-mono">-{formatCurrency(adminAmount)}</span>
+                <span className="font-mono font-semibold">-{formatCurrency(adminAmount)}</span>
               </div>
-              <div className="border-t border-slate-800 pt-1.5 flex justify-between text-emerald-400 font-bold text-xs">
+              <div className="border-t border-slate-200 pt-1.5 flex justify-between text-[#155e37] font-extrabold text-xs">
                 <span>{isHinglish ? 'Khate Me Transfer Hogi:' : 'Net Bank Transfer:'}</span>
                 <span className="font-mono">{formatCurrency(netAmount)}</span>
               </div>
@@ -244,14 +244,14 @@ export const WithdrawModal: React.FC<WithdrawModalProps> = ({
               <button
                 type="button"
                 onClick={handleClose}
-                className="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold transition"
+                className="px-4 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold transition"
               >
                 {isHinglish ? 'Cancel' : 'Cancel'}
               </button>
               <button
                 type="submit"
                 disabled={validAmount <= 0}
-                className="px-5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white font-bold transition flex items-center gap-1.5 shadow"
+                className="px-5 py-2.5 rounded-full bg-[#155e37] hover:bg-[#114b2c] disabled:opacity-50 text-white font-bold transition flex items-center gap-1.5 shadow-sm active:scale-95"
               >
                 <ArrowUpRight className="w-4 h-4" />
                 <span>{isHinglish ? 'Transfer Confirm Karein' : 'Confirm Payout'}</span>

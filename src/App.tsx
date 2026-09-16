@@ -6,7 +6,8 @@ import {
   INITIAL_TRANSACTIONS 
 } from './data/initialData';
 import { Member, PlanSettings, IncomeTransaction, Package } from './types';
-import { Navbar } from './components/Navbar';
+import { Navbar, AppTab } from './components/Navbar';
+import { DashboardView } from './components/DashboardView';
 import { GenealogyTree } from './components/GenealogyTree';
 import { BinarySimulator } from './components/BinarySimulator';
 import { IncomeStreamsOverview } from './components/IncomeStreamsOverview';
@@ -22,7 +23,7 @@ export default function App() {
   const [settings, setSettings] = useState<PlanSettings>(INITIAL_PLAN_SETTINGS);
   const [members, setMembers] = useState<Member[]>(INITIAL_MEMBERS);
   const [transactions, setTransactions] = useState<IncomeTransaction[]>(INITIAL_TRANSACTIONS);
-  const [activeTab, setActiveTab] = useState<'tree' | 'simulator' | 'incomes' | 'ledger' | 'members'>('tree');
+  const [activeTab, setActiveTab] = useState<AppTab>('dashboard');
   const [isHinglish, setIsHinglish] = useState<boolean>(true); // default Hinglish for user's prompt context
 
   // Modals state
@@ -245,7 +246,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-indigo-500 selection:text-white">
+    <div className="min-h-screen bg-[#f4f5f7] text-slate-900 flex flex-col selection:bg-[#155e37] selection:text-white">
       {/* Top Navigation */}
       <Navbar
         settings={settings}
@@ -264,13 +265,31 @@ export default function App() {
 
       {/* Floating Announcement Banner if cutoff just ran */}
       {cutoffSuccessMessage && (
-        <div className="bg-gradient-to-r from-emerald-600 via-teal-600 to-indigo-600 text-white px-4 py-2.5 text-center text-xs font-bold shadow-lg animate-bounce">
+        <div className="bg-[#155e37] text-white px-4 py-2.5 text-center text-xs font-bold shadow-md animate-bounce">
           🎉 {cutoffSuccessMessage}
         </div>
       )}
 
       {/* Main Content Area */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 pb-24 md:pb-8">
+        {activeTab === 'dashboard' && (
+          <DashboardView
+            members={members}
+            settings={settings}
+            transactions={transactions}
+            walletBalance={leader.walletBalance}
+            onOpenAddMember={() => {
+              setSlotPreset(undefined);
+              setIsAddMemberOpen(true);
+            }}
+            onRunPayout={handleRunPayout}
+            onOpenWithdraw={() => setIsWithdrawOpen(true)}
+            onNavigateTab={(tab) => setActiveTab(tab)}
+            isHinglish={isHinglish}
+            onSelectMember={(m) => setSelectedMember(m)}
+          />
+        )}
+
         {activeTab === 'tree' && (
           <GenealogyTree
             members={members}

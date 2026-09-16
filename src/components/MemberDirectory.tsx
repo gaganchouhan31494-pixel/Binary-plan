@@ -48,33 +48,33 @@ export const MemberDirectory: React.FC<MemberDirectoryProps> = ({
   return (
     <div className="space-y-6">
       {/* Top Header Card */}
-      <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-6 shadow-xl">
+      <div className="bg-white border border-slate-200/80 rounded-[22px] p-5 sm:p-6 shadow-sm">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2">
-              <span className="p-2 rounded-lg bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">
+            <div className="flex items-center gap-2.5">
+              <span className="p-2 rounded-xl bg-emerald-50 text-[#155e37] border border-emerald-200">
                 <Users className="w-5 h-5" />
               </span>
-              <h2 className="text-lg sm:text-xl font-bold text-white">
+              <h2 className="text-lg sm:text-xl font-extrabold text-slate-900">
                 {isHinglish ? 'Binary Downline Team Directory' : 'Binary Team Directory'}
               </h2>
             </div>
-            <p className="text-xs text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
               {isHinglish
                 ? 'Aapki poori downline team ki list — Left Leg aur Right Leg members, BV volume aur rank ke sath.'
                 : 'Complete registry of all binary distributors, leg placements, accumulated BV and earnings.'}
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
-            <span className="text-xs px-3 py-1.5 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 font-mono">
+          <div className="flex items-center gap-2 shrink-0">
+            <span className="text-xs px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-700 font-mono font-bold">
               Total: {members.length} {isHinglish ? 'Members' : 'Distributors'}
             </span>
           </div>
         </div>
 
         {/* Filters and Search Bar */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4 pt-4 border-t border-slate-800">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4 pt-4 border-t border-slate-100">
           {/* Search */}
           <div className="relative">
             <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
@@ -83,7 +83,7 @@ export const MemberDirectory: React.FC<MemberDirectoryProps> = ({
               placeholder={isHinglish ? "Search Member ID, Naam ya Phone..." : "Search member name, ID..."}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+              className="w-full pl-9 pr-3 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#155e37]"
             />
           </div>
 
@@ -92,7 +92,7 @@ export const MemberDirectory: React.FC<MemberDirectoryProps> = ({
             <select
               value={legFilter}
               onChange={(e) => setLegFilter(e.target.value as 'ALL' | 'L' | 'R')}
-              className="w-full px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500"
+              className="w-full px-3 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-xs text-slate-800 font-medium focus:outline-none focus:border-[#155e37]"
             >
               <option value="ALL">{isHinglish ? 'Sabhi Legs (Left + Right)' : 'All Legs (L & R)'}</option>
               <option value="L">{isHinglish ? 'Kewal Left Leg Members' : 'Left Leg Only'}</option>
@@ -105,7 +105,7 @@ export const MemberDirectory: React.FC<MemberDirectoryProps> = ({
             <select
               value={pkgFilter}
               onChange={(e) => setPkgFilter(e.target.value)}
-              className="w-full px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500"
+              className="w-full px-3 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-xs text-slate-800 font-medium focus:outline-none focus:border-[#155e37]"
             >
               <option value="ALL">{isHinglish ? 'Sabhi Packages' : 'All Packages'}</option>
               {packages.map((pkg) => (
@@ -120,7 +120,7 @@ export const MemberDirectory: React.FC<MemberDirectoryProps> = ({
         {/* Mobile Cards View (md:hidden) */}
         <div className="md:hidden mt-4 space-y-3">
           {filteredMembers.length === 0 ? (
-            <div className="text-center py-8 text-slate-500 text-xs">
+            <div className="text-center py-8 text-slate-400 text-xs">
               {isHinglish ? 'Koi member nahi mila.' : 'No members found.'}
             </div>
           ) : (
@@ -130,58 +130,58 @@ export const MemberDirectory: React.FC<MemberDirectoryProps> = ({
                 <div
                   key={m.id}
                   onClick={() => onSelectMember(m)}
-                  className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 hover:border-indigo-500/50 transition cursor-pointer space-y-2.5 shadow-sm active:scale-98"
+                  className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 hover:border-emerald-300 transition cursor-pointer space-y-2.5 shadow-sm active:scale-98"
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center text-white font-bold text-xs shrink-0">
+                      <div className="w-9 h-9 rounded-full bg-[#155e37] flex items-center justify-center text-white font-bold text-xs shrink-0">
                         {m.name.charAt(0)}
                       </div>
                       <div className="min-w-0">
-                        <div className="font-bold text-white text-xs truncate">{m.name}</div>
-                        <div className="text-[10px] font-mono text-indigo-400">{m.id}</div>
+                        <div className="font-bold text-slate-900 text-xs truncate">{m.name}</div>
+                        <div className="text-[10px] font-mono text-[#155e37] font-semibold">{m.id}</div>
                       </div>
                     </div>
 
                     <div className="flex items-center gap-1.5 shrink-0">
                       <span
-                        className={`text-[9px] font-bold px-1.5 py-0.2 rounded ${
+                        className={`text-[9px] font-bold px-2 py-0.5 rounded-full ${
                           m.position === 'L'
-                            ? 'bg-blue-500/20 text-blue-300 border border-blue-500/30'
+                            ? 'bg-blue-50 text-blue-700 border border-blue-200'
                             : m.position === 'R'
-                            ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
-                            : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+                            ? 'bg-purple-50 text-purple-700 border border-purple-200'
+                            : 'bg-emerald-50 text-[#155e37] border border-emerald-200'
                         }`}
                       >
                         {m.position ? (m.position === 'L' ? 'LEFT' : 'RIGHT') : 'ROOT'}
                       </span>
-                      <span className="text-[9px] px-1.5 py-0.2 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20 font-medium">
+                      <span className="text-[9px] px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200 font-bold">
                         {m.rank}
                       </span>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-2 p-2 bg-slate-900/90 rounded-lg text-[10px]">
+                  <div className="grid grid-cols-2 gap-2 p-2 bg-white rounded-xl border border-slate-200 text-[10px]">
                     <div>
                       <span className="text-slate-400 block">Package:</span>
-                      <span className="text-white font-medium truncate block">{pkg?.name}</span>
+                      <span className="text-slate-800 font-semibold truncate block">{pkg?.name}</span>
                     </div>
                     <div className="text-right">
                       <span className="text-slate-400 block">Sponsor:</span>
-                      <span className="font-mono text-slate-300">{m.sponsorId}</span>
+                      <span className="font-mono text-slate-700">{m.sponsorId}</span>
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between pt-1 border-t border-slate-800/80 text-[10px]">
+                  <div className="flex items-center justify-between pt-1 border-t border-slate-200 text-[10px]">
                     <div className="flex items-center gap-3">
                       <span>
-                        L: <strong className="font-mono text-blue-400">{formatBV(m.leftBv)}</strong>
+                        L: <strong className="font-mono text-blue-700">{formatBV(m.leftBv)}</strong>
                       </span>
                       <span>
-                        R: <strong className="font-mono text-purple-400">{formatBV(m.rightBv)}</strong>
+                        R: <strong className="font-mono text-purple-700">{formatBV(m.rightBv)}</strong>
                       </span>
                     </div>
-                    <div className="text-right font-mono font-bold text-emerald-400">
+                    <div className="text-right font-mono font-bold text-[#155e37]">
                       Earned: {formatCurrency(m.totalEarnings)}
                     </div>
                   </div>
@@ -193,8 +193,8 @@ export const MemberDirectory: React.FC<MemberDirectoryProps> = ({
 
         {/* Desktop Member Table (hidden on md) */}
         <div className="hidden md:block mt-4 overflow-x-auto">
-          <table className="w-full text-left text-xs text-slate-300">
-            <thead className="bg-slate-950/80 text-slate-400 uppercase text-[10px] font-semibold border-b border-slate-800">
+          <table className="w-full text-left text-xs text-slate-700">
+            <thead className="bg-slate-50 text-slate-500 uppercase text-[10px] font-bold border-b border-slate-200">
               <tr>
                 <th className="py-2.5 px-3">Member Info</th>
                 <th className="py-2.5 px-3">Placement & Leg</th>
@@ -207,10 +207,10 @@ export const MemberDirectory: React.FC<MemberDirectoryProps> = ({
                 <th className="py-2.5 px-3 text-center">Action</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-slate-100">
               {filteredMembers.length === 0 ? (
                 <tr>
-                  <td colSpan={9} className="text-center py-8 text-slate-500 font-sans">
+                  <td colSpan={9} className="text-center py-8 text-slate-400 font-sans">
                     {isHinglish ? 'Koi member nahi mila.' : 'No members found.'}
                   </td>
                 </tr>
@@ -218,55 +218,55 @@ export const MemberDirectory: React.FC<MemberDirectoryProps> = ({
                 filteredMembers.map((m) => {
                   const pkg = getPackage(m.packageId);
                   return (
-                    <tr key={m.id} className="hover:bg-slate-800/40 transition">
+                    <tr key={m.id} className="hover:bg-slate-50/80 transition">
                       <td className="py-3 px-3">
-                        <div className="font-bold text-white">{m.name}</div>
-                        <div className="text-[10px] font-mono text-indigo-400">{m.id}</div>
+                        <div className="font-bold text-slate-900">{m.name}</div>
+                        <div className="text-[10px] font-mono text-[#155e37] font-semibold">{m.id}</div>
                       </td>
                       <td className="py-3 px-3 whitespace-nowrap">
                         <span
-                          className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
+                          className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
                             m.position === 'L'
-                              ? 'bg-blue-500/20 text-blue-300 border border-blue-500/30'
+                              ? 'bg-blue-50 text-blue-700 border border-blue-200'
                               : m.position === 'R'
-                              ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
-                              : 'bg-slate-800 text-slate-400'
+                              ? 'bg-purple-50 text-purple-700 border border-purple-200'
+                              : 'bg-slate-100 text-slate-600'
                           }`}
                         >
                           {m.position ? (m.position === 'L' ? 'LEFT LEG' : 'RIGHT LEG') : 'ROOT'}
                         </span>
                         {m.placementParentId && (
-                          <div className="text-[10px] text-slate-500 mt-0.5">
+                          <div className="text-[10px] text-slate-400 mt-0.5 font-mono">
                             Under: {m.placementParentId}
                           </div>
                         )}
                       </td>
-                      <td className="py-3 px-3 font-mono text-slate-300 whitespace-nowrap">
+                      <td className="py-3 px-3 font-mono text-slate-600 whitespace-nowrap">
                         {m.sponsorId}
                       </td>
                       <td className="py-3 px-3 whitespace-nowrap">
-                        <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
+                        <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
                           {pkg?.name}
                         </span>
                       </td>
-                      <td className="py-3 px-3 text-right font-mono font-bold text-blue-300 whitespace-nowrap">
+                      <td className="py-3 px-3 text-right font-mono font-bold text-blue-700 whitespace-nowrap">
                         {formatBV(m.leftBv)}
                       </td>
-                      <td className="py-3 px-3 text-right font-mono font-bold text-purple-300 whitespace-nowrap">
+                      <td className="py-3 px-3 text-right font-mono font-bold text-purple-700 whitespace-nowrap">
                         {formatBV(m.rightBv)}
                       </td>
-                      <td className="py-3 px-3 text-right font-mono font-bold text-emerald-400 whitespace-nowrap">
+                      <td className="py-3 px-3 text-right font-mono font-bold text-[#155e37] whitespace-nowrap">
                         {formatCurrency(m.totalEarnings)}
                       </td>
                       <td className="py-3 px-3 text-center whitespace-nowrap">
-                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/20 font-medium">
+                        <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200 font-bold">
                           {m.rank}
                         </span>
                       </td>
                       <td className="py-3 px-3 text-center whitespace-nowrap">
                         <button
                           onClick={() => onSelectMember(m)}
-                          className="px-2.5 py-1 rounded bg-indigo-600/30 hover:bg-indigo-600 text-indigo-300 hover:text-white text-[11px] font-medium transition"
+                          className="px-3 py-1 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-bold transition"
                         >
                           {isHinglish ? 'Details' : 'View'}
                         </button>
