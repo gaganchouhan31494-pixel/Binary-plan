@@ -1,0 +1,6 @@
+{
+  "name": "MLM Binary Plan Pro",
+  "description": "Comprehensive MLM Binary Plan platform featuring interactive genealogy tree, multi-stream income calculator (Direct Referral, Binary Matching, Level, ROI, Rank Rewards, Royalty Club), and member payout ledger.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
